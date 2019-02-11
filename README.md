@@ -9,5 +9,6 @@
 - 登入myouhk ➜ 你讀緊個Programme ➜ Academic Record ➜ view all terms按鈕
 - 之後嘅步驟有啲難
   - 按<kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>
-  - 將[OUHK-CGPA-Calculator.js](https://raw.githubusercontent.com/maxloh/OUHK-CGPA-Calculator/master/OUHK-CGPA-Calculator.js)嘅內容貼去控制檯到
+  - 將[OUHK-CGPA-Calculator.js](https://raw.githubusercontent.com/maxloh/OUHK-CGPA-Calculator/master/OUHK-CGPA-Calculator.js)嘅內容貼去Console到
   - 按<kbd>Enter</kbd>
+  - 得咗🤟
