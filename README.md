@@ -25,7 +25,7 @@ javascript:(function(){try{var getGPA=function(grade){if(grade==="A")return 4;if
 - 按<kbd>Enter</kbd>
 - 得咗🤟
 
-## 🔨Build the script
+## 🔨Build the bookmarklet
 
 Check the [build-bookmarklet.js](build-bookmarklet.js) file for building the bookmarklet.
 
