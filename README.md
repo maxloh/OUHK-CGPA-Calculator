@@ -21,7 +21,7 @@ javascript:(function(){try{var getGPA=function(grade){if(grade==="A")return 4;if
 
 - 登入myouhk ➜ 你讀緊個Programme ➜ Academic Record ➜ 按view all terms按鈕
 - 按<kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd>
-- 將[OUHK-CGPA-Calculator.js](OUHK-CGPA-Calculator.js)嘅內容貼去Console到
+- 將[OUHK-CGPA-Calculator.js](https://raw.githubusercontent.com/maxloh/OUHK-CGPA-Calculator/master/OUHK-CGPA-Calculator.js)嘅內容貼去Console到
 - 按<kbd>Enter</kbd>
 - 得咗🤟
 
