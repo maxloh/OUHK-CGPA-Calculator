@@ -7,10 +7,10 @@ try {
         }
     });
     var results = [];
-    var header = table.querySelectorAll("th");
+    var header = table.querySelectorAll('th');
 
-    table.querySelectorAll("tr").forEach(function (rowElement, rowIndex) {
-        cells = rowElement.querySelectorAll("td");
+    table.querySelectorAll('tr').forEach(function (rowElement, rowIndex) {
+        cells = rowElement.querySelectorAll('td');
         if (cells.length === 0) {
             return;
         }
