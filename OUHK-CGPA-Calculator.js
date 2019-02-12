@@ -16,9 +16,7 @@ try {
         }
         results[rowIndex] = {};
         cells.forEach(function (cellElement, columnIndex) {
-            if (columnIndex <= header.length) {
-                results[rowIndex][header[columnIndex].textContent] = cellElement.textContent.replace(/\n/g, '');
-            }
+            results[rowIndex][header[columnIndex].textContent] = cellElement.textContent.replace(/\n/g, '');
         });
     });
     var json = {};
@@ -47,6 +45,7 @@ try {
         if (grade === 'B-') return 2.7;
         if (grade === 'C+') return 2.3;
         if (grade === 'C') return 2.0;
+        if (grade === 'F' || grade === 'Fail' || grade === 'fail') return 0.0;
         return -1;
     }
 } catch (e) {
