@@ -1,16 +1,24 @@
 /*
 Building steps of the JavaScript bookmarklet
-1. Minify OUHK-CGPA-Calculator.js with Google Closure Compiler, only "Whitespace only" and "Simple" optimization would work
-   website: https://closure-compiler.appspot.com/
-   docs: https://developers.google.com/closure/compiler/docs/gettingstarted_ui
-2. Download the converted file
-3. Rename the downloaded file to "input.txt" and put it to the same directory as this script file
-3. Run this script with Node.js
-4. The bookmarklet is now in the "output.txt" file
+1. Install Node.js
+2. Run 'npm install google-closure-compiler'
+2. Run 'node ".\build-bookmarklet.js"'
+3. The bookmarklet is now in the "bookmarklet.js" file
 */
 
+const ClosureCompiler = require('google-closure-compiler').jsCompiler;
 const fs = require('fs');
-fs.readFile('input.txt', (err, data) => {
+
+fs.readFile('OUHK-CGPA-Calculator.js', (err, data) => {
     if (err) throw err;
-    fs.writeFile('output.txt', 'javascript:(function(){' + data.toString().replace(/\n/g, '') + '})();', (err) => { if (err) throw err; });
+    new ClosureCompiler({
+        compilation_level: 'WHITESPACE_ONLY'
+    }).run([{
+        src: data.toString(),
+        sourceMap: null // optional input source map
+    }], (exitCode, stdOut, stdErr) => {
+        fs.writeFile('bookmarklet.js', 'javascript:(function(){' + stdOut[0].src.replace(/\n/g, '') + '})();', (err) => {
+            if (err) throw err;
+        });
+    });
 });
