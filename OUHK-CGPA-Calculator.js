@@ -45,7 +45,7 @@ try {
         if (grade === 'B-') return 2.7;
         if (grade === 'C+') return 2.3;
         if (grade === 'C') return 2.0;
-        if (grade === 'F' || grade === 'Fail' || grade === 'fail') return 0.0;
+        if (grade === 'Fail') return 0.0;
         return -1;
     }
 } catch (e) {
