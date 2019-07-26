@@ -18,9 +18,8 @@ try {
     let header = table.getElementsByTagName('th');
     let results = [...table.getElementsByTagName('tr')].filter(course => course.getElementsByTagName('td').length !== 0)
         .map((rowElement) => {
-            cells = rowElement.getElementsByTagName('td');
-            course = {};
-            [...cells].forEach(function (cellElement, columnIndex) {
+            let course = {};
+            [...rowElement.getElementsByTagName('td')].forEach(function (cellElement, columnIndex) {
                 course[header[columnIndex].textContent] = cellElement.textContent.replace(/\n/g, '');
             });
             return course;
