@@ -1,0 +1,21 @@
+{
+  "name": "ouhk-cgpa-calculator",
+  "version": "2.0.0",
+  "description": "非官方 OUHK CGPA 計算器",
+  "scripts": {
+    "build": "node build-bookmarklet.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxloh/OUHK-CGPA-Calculator.git"
+  },
+  "author": "Loh Ka Hong",
+  "license": "CC-BY-4.0",
+  "bugs": {
+    "url": "https://github.com/maxloh/OUHK-CGPA-Calculator/issues"
+  },
+  "homepage": "https://github.com/maxloh/OUHK-CGPA-Calculator#readme",
+  "dependencies": {
+    "google-closure-compiler": "^20190709.0.0"
+  }
+}

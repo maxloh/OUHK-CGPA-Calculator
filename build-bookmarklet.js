@@ -1,8 +1,8 @@
 /*
 Building steps of the JavaScript bookmarklet
 1. Install Node.js
-2. Run 'npm install google-closure-compiler'
-2. Run 'node .\build-bookmarklet.js'
+2. Run 'npm install'
+2. Run 'npm run build'
 3. The bookmarklet is now in the "bookmarklet.js" file
 */
 
