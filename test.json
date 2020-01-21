@@ -1,0 +1,67 @@
+[
+    {
+        "Term": "1804",
+        "Term Desc": "2018 Aut",
+        "Subj": "COMP",
+        "Catalog": "S311F",
+        "Unit": "10.00",
+        "Reg Value": " ",
+        "Status": "Enrolled",
+        "Reason": " ",
+        "Grade": "A-",
+        "Indr": "  ",
+        "Top Student": " "
+    },
+    {
+        "Term": "1804",
+        "Term Desc": "2018 Aut",
+        "Subj": "COMP",
+        "Catalog": "S356F",
+        "Unit": "10.00",
+        "Reg Value": " ",
+        "Status": "Enrolled",
+        "Reason": " ",
+        "Grade": "B",
+        "Indr": "  ",
+        "Top Student": " "
+    },
+    {
+        "Term": "1804",
+        "Term Desc": "2018 Aut",
+        "Subj": "COMP",
+        "Catalog": "S358F",
+        "Unit": "10.00",
+        "Reg Value": " ",
+        "Status": "Enrolled",
+        "Reason": " ",
+        "Grade": "A-",
+        "Indr": "  ",
+        "Top Student": " "
+    },
+    {
+        "Term": "1904",
+        "Term Desc": "2019 Aut",
+        "Subj": "COMP",
+        "Catalog": "S381F",
+        "Unit": "5.00",
+        "Reg Value": " ",
+        "Status": "Enrolled",
+        "Reason": " ",
+        "Grade": "A-",
+        "Indr": "  ",
+        "Top Student": " "
+    },
+    {
+        "Term": "1904",
+        "Term Desc": "2019 Aut",
+        "Subj": "ELEC",
+        "Catalog": "S305F",
+        "Unit": "5.00",
+        "Reg Value": " ",
+        "Status": "Enrolled",
+        "Reason": " ",
+        "Grade": "A-",
+        "Indr": "  ",
+        "Top Student": " "
+    }
+]
