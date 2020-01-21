@@ -39,7 +39,6 @@
             // Course credit sequence: 5, 10, ...
             else {
               const next5CreditCourse = courseList.slice(parseInt(index) + 1).find(course => parseInt(course.Unit) === 5);
-              console.log(typeof index);
               // if next course with 5 credit not exists, or (10 > (5 + 5) / 2) -> add 10 credit course
               if (!next5CreditCourse || getGPA(nextCourse.Grade) >= (getGPA(course.Grade) + getGPA(next5CreditCourse.Grade)) / 2) addCourse(nextCourse);
               // else -> add 5 credit course * 2
