@@ -23,8 +23,6 @@
         totalCredit += parseInt(course.Unit);
         totalGpa += getGPA(course.Grade) * course.Unit;
       }
-
-      console.log(courseList);
       for (const index in courseList) {
         const course = courseList[index];
 
@@ -32,38 +30,18 @@
         else if (creditMax - totalCredit === 10) {
           // Last array element
           if (!courseList[parseInt(index) + 1]) addCourse(course);
-
-          const nextCourse = courseList[parseInt(index) + 1];
-
-          // 10 -> add 10 || 5, 5 -> add 5 and continue
-          if (parseInt(course.Unit) === 10 || parseInt(nextCourse.Unit) === 5) {
-            addCourse(course);
-          }
-          // 5, 10, ?
           else {
-            const nextNextCourse = courseList[parseInt(index) + 2] || null;
-            // 5, 10, end -> add 10
-            if (!nextNextCourse) {
-              addCourse(nextCourse);
+            const nextCourse = courseList[parseInt(index) + 1];
+            // Course credit sequence: 10, ... -> add 10 credit course || Course credit sequence: 5, 5, ... -> add 5 credit course and continue
+            if (parseInt(course.Unit) === 10 || parseInt(nextCourse.Unit) === 5) {
+              addCourse(course);
             }
-            // 5, 10, 5
-            else if (parseInt(nextNextCourse.Unit) === 5) {
-              // if (10 > (5 + 5) / 2) -> add 10 
-              if (getGPA(nextCourse.Grade) >= (getGPA(course.Grade) + getGPA(nextNextCourse.Grade)) / 2) {
-                addCourse(nextCourse);
-              }
-              // else -> add 5, 5
-              else {
-                addCourse(course);
-                addCourse(nextNextCourse);
-              }
-            }
-            // 5, 10, 10
+            // Course credit sequence: 5, 10, ...
             else {
               const next5CreditCourse = courseList.slice(index).find(course => course.Unit === 5);
-              // if next course with 5 credit not exists, or (10 > (5 + 5) / 2) -> add 10 
+              // if next course with 5 credit not exists, or (10 > (5 + 5) / 2) -> add 10 credit course
               if (!next5CreditCourse || getGPA(nextCourse.Grade) >= (getGPA(course.Grade) + getGPA(next5CreditCourse.Grade)) / 2) addCourse(nextCourse);
-              // else > add 5, 5
+              // else -> add 5 credit course * 2
               else {
                 addCourse(course);
                 addCourse(next5CreditCourse);
@@ -74,7 +52,7 @@
       }
     }
 
-    const sortCourse = (a, b) => getGPA(b.Grade) - getGPA(a.Grade)
+    const sortCourse = (a, b) => getGPA(b.Grade) - getGPA(a.Grade);
 
     if (higherLevel) {
       const compulsory = courseList.filter(course => ['S311F', '356F', 'S358F'].some(element => element === course.Catalog));
@@ -88,7 +66,7 @@
       addCourseToResult(courseList, 40);
     }
 
-    resultText += `\nGPA: ${totalGpa / totalCredit}, Total Credit: ${totalCredit}, Total GPA: ${totalGpa}`;
+    resultText += `\nGPA: ${totalGpa / totalCredit}, Total Course credit sequence: ${totalCredit}, Total GPA: ${totalGpa}`;
     console.log(resultText);
     return totalGpa / totalCredit;
   }
