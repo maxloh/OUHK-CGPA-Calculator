@@ -1,67 +1,38 @@
 [
     {
-        "Term": "1804",
-        "Term Desc": "2018 Aut",
         "Subj": "COMP",
-        "Catalog": "S311F",
+        "Catalog": "S202F",
         "Unit": "10.00",
-        "Reg Value": " ",
-        "Status": "Enrolled",
-        "Reason": " ",
-        "Grade": "A-",
-        "Indr": "  ",
-        "Top Student": " "
+        "Grade": "A"
     },
     {
-        "Term": "1804",
-        "Term Desc": "2018 Aut",
         "Subj": "COMP",
-        "Catalog": "S356F",
+        "Catalog": "S263F",
         "Unit": "10.00",
-        "Reg Value": " ",
-        "Status": "Enrolled",
-        "Reason": " ",
-        "Grade": "B",
-        "Indr": "  ",
-        "Top Student": " "
+        "Grade": "A"
     },
     {
-        "Term": "1804",
-        "Term Desc": "2018 Aut",
         "Subj": "COMP",
-        "Catalog": "S358F",
+        "Catalog": "S209F",
         "Unit": "10.00",
-        "Reg Value": " ",
-        "Status": "Enrolled",
-        "Reason": " ",
-        "Grade": "A-",
-        "Indr": "  ",
-        "Top Student": " "
+        "Grade": "A"
     },
     {
-        "Term": "1904",
-        "Term Desc": "2019 Aut",
         "Subj": "COMP",
-        "Catalog": "S381F",
+        "Catalog": "S266F",
         "Unit": "5.00",
-        "Reg Value": " ",
-        "Status": "Enrolled",
-        "Reason": " ",
-        "Grade": "A-",
-        "Indr": "  ",
-        "Top Student": " "
+        "Grade": "A"
     },
     {
-        "Term": "1904",
-        "Term Desc": "2019 Aut",
-        "Subj": "ELEC",
-        "Catalog": "S305F",
+        "Subj": "COMP",
+        "Catalog": "S267F",
+        "Unit": "10.00",
+        "Grade": "A-"
+    },
+    {
+        "Subj": "COMP",
+        "Catalog": "S266F",
         "Unit": "5.00",
-        "Reg Value": " ",
-        "Status": "Enrolled",
-        "Reason": " ",
-        "Grade": "A-",
-        "Indr": "  ",
-        "Top Student": " "
+        "Grade": "C"
     }
 ]

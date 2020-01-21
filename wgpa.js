@@ -10,71 +10,73 @@
     if (grade === 'Fail') return 0.0;
     return null;
   }
-  const getWGPA = (courseList, level) => {
+
+  const getWGPA = (courseList, higherLevel) => {
     let totalCredit = 0;
     let totalGpa = 0;
-    let resultText = `${level} level\n\nCourse     Credit  GPA\n`;
-
-    const sortCourse = (a, b) => getGPA(b.Grade) - getGPA(a.Grade)
+    let resultText = `${higherLevel ? 'Higher' : 'Middle or Higher'} level\n\nCourse     Credit  GPA\n`;
 
     const addCourseToResult = (courseList, noCredit) => {
       const creditMax = totalCredit + noCredit;
-      const addCouse = (course) => {
+      const addCourse = (course) => {
         resultText += `${course.Subj}${course.Catalog}  ${course.Unit}${course.Unit.length === 4 ? ' ' : ''}   ${course.Grade}\n`;
         totalCredit += parseInt(course.Unit);
         totalGpa += getGPA(course.Grade) * course.Unit;
       }
 
+      console.log(courseList);
       for (const index in courseList) {
         const course = courseList[index];
+
         if (totalCredit >= creditMax) break;
-        else if (totalCredit - creditMax === 10) {
-          if (!courseList[index + 1]) {
-            addCouse(course);
-            break;
-          }
+        else if (creditMax - totalCredit === 10) {
+          // Last array element
+          if (!courseList[parseInt(index) + 1]) addCourse(course);
 
-          const nextCourse = courseList[index + 1];
+          const nextCourse = courseList[parseInt(index) + 1];
 
-          // 10 -> add 10
-          if (parseInt(course.Unit) === 10) {
-            addCouse(course);
-          }
-          // 5 5 -> add 5, 5
-          else if (parseInt(nextCourse.Unit) === 5) {
-            addCouse(course);
-            addCouse(nextCourse);
+          // 10 -> add 10 || 5, 5 -> add 5 and continue
+          if (parseInt(course.Unit) === 10 || parseInt(nextCourse.Unit) === 5) {
+            addCourse(course);
           }
           // 5, 10, ?
           else {
-            const next2Course = courseList[index + 2] || null;
+            const nextNextCourse = courseList[parseInt(index) + 2] || null;
             // 5, 10, end -> add 10
-            if (!next2Course) {
-              addCouse(nextCourse);
+            if (!nextNextCourse) {
+              addCourse(nextCourse);
             }
             // 5, 10, 5
-            else if (parseInt(nextCourse.Unit) === 10 && parseInt(next2Course.Unit) === 5) {
+            else if (parseInt(nextNextCourse.Unit) === 5) {
               // if (10 > (5 + 5) / 2) -> add 10 
-              if (getGPA(nextCourse) >= (getGPA(course) + getGPA(next2Course)) / 2) {
-                addCouse(nextCourse);
-              } 
+              if (getGPA(nextCourse.Grade) >= (getGPA(course.Grade) + getGPA(nextNextCourse.Grade)) / 2) {
+                addCourse(nextCourse);
+              }
               // else -> add 5, 5
               else {
-                addCouse(course);
-                addCouse(next2Course);
+                addCourse(course);
+                addCourse(nextNextCourse);
               }
             }
-            // 5 10 10
+            // 5, 10, 10
             else {
-
+              const next5CreditCourse = courseList.slice(index).find(course => course.Unit === 5);
+              // if next course with 5 credit not exists, or (10 > (5 + 5) / 2) -> add 10 
+              if (!next5CreditCourse || getGPA(nextCourse.Grade) >= (getGPA(course.Grade) + getGPA(next5CreditCourse.Grade)) / 2) addCourse(nextCourse);
+              // else > add 5, 5
+              else {
+                addCourse(course);
+                addCourse(next5CreditCourse);
+              }
             }
           }
-          break;
-        } else addCouse(course);
+        } else addCourse(course);
       }
     }
 
-    if (level === 'Higher') {
+    const sortCourse = (a, b) => getGPA(b.Grade) - getGPA(a.Grade)
+
+    if (higherLevel) {
       const compulsory = courseList.filter(course => ['S311F', '356F', 'S358F'].some(element => element === course.Catalog));
       const remaining = courseList.filter(course => !compulsory.includes(course));
       compulsory.sort(sortCourse);
@@ -107,5 +109,5 @@
   const S2XX = results.filter(course => course.Subj === 'COMP' && course.Catalog.match(/S2../) && getGPA(course.Grade));
   const S3XX = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S3../) && getGPA(course.Grade));
 
-  console.log(`WGPA: ${(getWGPA(S3XX, 'Higher') * 2 + getWGPA(S2XX, 'Middle or Higher')) / 3}`);
+  console.log(`WGPA: ${(getWGPA(S3XX, true) * 2 + getWGPA(S2XX, false)) / 3}`);
 }
