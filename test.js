@@ -19,21 +19,15 @@ let a = [
     },
     {
         "Subj": "COMP",
-        "Catalog": "S266F",
-        "Unit": "10.00",
-        "Grade": "A"
-    },
-    {
-        "Subj": "COMP",
         "Catalog": "S267F",
         "Unit": "10.00",
         "Grade": "B+"
     },
     {
         "Subj": "COMP",
-        "Catalog": "S268F",
+        "Catalog": "S266F",
         "Unit": "5.00",
-        "Grade": "B+"
+        "Grade": "B"
     }
 ];
 
@@ -58,13 +52,13 @@ let b = [
     },
     {
         "Subj": "COMP",
-        "Catalog": "S266F",
+        "Catalog": "S267F",
         "Unit": "5.00",
-        "Grade": "A"
+        "Grade": "A-"
     },
     {
         "Subj": "COMP",
-        "Catalog": "S267F",
+        "Catalog": "S266F",
         "Unit": "5.00",
         "Grade": "B+"
     },
@@ -97,24 +91,36 @@ let c = [
     },
     {
         "Subj": "COMP",
-        "Catalog": "S266F",
+        "Catalog": "S267F",
         "Unit": "5.00",
-        "Grade": "A"
+        "Grade": "A-"
     },
     {
         "Subj": "COMP",
-        "Catalog": "S267F",
+        "Catalog": "S268F",
         "Unit": "10.00",
         "Grade": "B+"
     },
     {
         "Subj": "COMP",
         "Catalog": "S268F",
-        "Unit": "5.00",
+        "Unit": "10.00",
         "Grade": "B+"
+    },
+    {
+        "Subj": "COMP",
+        "Catalog": "S268F",
+        "Unit": "10.00",
+        "Grade": "B+"
+    },
+    {
+        "Subj": "COMP",
+        "Catalog": "S266F",
+        "Unit": "5.00",
+        "Grade": "B"
     }
 ];
 
 getWGPA(a, false);
-getWGPA(a, false);
-getWGPA(a, false);
+getWGPA(b, false);
+getWGPA(c, false);
