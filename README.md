@@ -9,3 +9,11 @@
 - 將[ouhk-cgpa-calculator.js](https://raw.githubusercontent.com/maxloh/ouhk-cgpa-calculator/master/ouhk-cgpa-calculator.js)嘅內容貼去Console到
 - 撳Keyboard <kbd>Enter</kbd> 掣
 - 得咗🤟
+
+## Computing WGPA 計算器
+
+Internet Technology嘅同學可以用[computing-wgpa-calculator.js](https://raw.githubusercontent.com/maxloh/ouhk-cgpa-calculator/master/computing-wgpa-calculator.js)計Weighted GPA
+
+跟據Student Portal入面嘅[Programme Requirements](http://www.ouhk.edu.hk/REG/reg_ftae/Programme_Requirements/Prog_req_9717_BCOMPHITJ.pdf)文件（2019年7月版）寫出嚟
+
+用法同上
