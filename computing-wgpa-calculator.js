@@ -11,6 +11,8 @@ try {
     return null;
   }
 
+  let countedCourse = [];
+
   const getWGPA = (courseList, higherLevel) => {
     let totalCredit = 0;
     let totalGpa = 0;
@@ -20,6 +22,7 @@ try {
       const creditMax = totalCredit + noCredit;
       const addCourse = (course) => {
         includedCourse[`${course.Subj}${course.Catalog}`] = { Credit: course.Unit, Grade: course.Grade };
+        countedCourse.push(course)
         totalCredit += parseInt(course.Unit);
         totalGpa += getGPA(course.Grade) * course.Unit;
       }
@@ -63,6 +66,12 @@ try {
       addCourseToResult(remaining, 20);
     } else {
       courseList.sort(sortCourse);
+      // console.log('countedCourse')
+      // console.log(countedCourse)
+      courseList = courseList.reduce((acc, course) => {
+        !countedCourse.includes(course) && acc.push(course);
+        return acc;
+      }, []);
       addCourseToResult(courseList, 40);
     }
 
@@ -86,9 +95,11 @@ try {
 
   const S2XX = results.filter(course => course.Subj === 'COMP' && course.Catalog.match(/S2\d\dF/) && getGPA(course.Grade));
   const S3XX = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S3\d\dF/) && getGPA(course.Grade));
+  const S4XX = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S4\d\dF/) && getGPA(course.Grade));
 
   console.clear();
-  console.log(`WGPA: ${(getWGPA(S3XX, true) * 2 + getWGPA(S2XX, false)) / 3}`);
+  console.log(`WGPA: ${(getWGPA(S3XX.concat(S4XX), true) * 2 + getWGPA(S2XX.concat(S3XX).concat(S4XX), false)) / 3}`);
+
   console.log('OUHK CGPA Calculator by Loh Ka Hong');
 } catch (e) {
   alert('Please press "view all terms" button in "Academic Record" page and try run this script again');
