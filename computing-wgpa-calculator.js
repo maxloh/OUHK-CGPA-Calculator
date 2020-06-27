@@ -73,26 +73,27 @@ try {
     return totalGpa / totalCredit;
   };
 
-  const table = [...document.querySelector('frame[name="TargetContent"]').contentDocument.querySelectorAll('table.PSLEVEL2GRID')].find((element) => {
-    const text = element.innerText;
-    return text.includes('Subj') && text.includes('Catalog') && text.includes('Unit') && text.includes('Grade');
-  });
-  const header = table.getElementsByTagName('th');
-  const results = [...table.getElementsByTagName('tr')].filter(course => course.getElementsByTagName('td').length !== 0).map((rowElement) => {
-    const course = {};
-    [...rowElement.getElementsByTagName('td')].forEach(function (cellElement, columnIndex) {
-      course[header[columnIndex].textContent] = cellElement.textContent.replace(/\n/g, '');
+  const results = (() => {
+    const table = [...document.querySelector('frame[name="TargetContent"]').contentDocument.querySelectorAll('table.PSLEVEL2GRID')].find((element) => {
+      const text = element.innerText;
+      return text.includes('Subj') && text.includes('Catalog') && text.includes('Unit') && text.includes('Grade');
     });
-    return course;
-  });
+    const header = table.getElementsByTagName('th');
 
+    return [...table.getElementsByTagName('tr')].filter(course => course.getElementsByTagName('td').length !== 0).map((rowElement) => {
+      const course = {};
+      [...rowElement.getElementsByTagName('td')].forEach(function (cellElement, columnIndex) {
+        course[header[columnIndex].textContent] = cellElement.textContent.replace(/\n/g, '');
+      });
+      return course;
+    });
+  })();
   const countedCourses = [];
   const middleLevelCourses = results.filter(course => course.Subj === 'COMP' && course.Catalog.match(/S2\d\dF/) && getGPA(course.Grade));
   const higherLevelCourses = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S3\d\dF|S4\d\dF/) && getGPA(course.Grade));
 
   console.clear();
   console.log(`WGPA: ${(getWGPA(higherLevelCourses, true) * 2 + getWGPA(middleLevelCourses.concat(higherLevelCourses), false)) / 3}`);
-
   console.log('OUHK CGPA Calculator by Loh Ka Hong');
 } catch (e) {
   alert('Please press "view all terms" button in "Academic Record" page and try run this script again');
