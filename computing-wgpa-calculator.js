@@ -9,9 +9,7 @@ try {
     if (grade === 'C') return 2.0;
     if (grade === 'Fail') return 0.0;
     return null;
-  }
-
-  let countedCourse = [];
+  };
 
   const getWGPA = (courseList, higherLevel) => {
     let totalCredit = 0;
@@ -22,10 +20,10 @@ try {
       const creditMax = totalCredit + noCredit;
       const addCourse = (course) => {
         includedCourse[`${course.Subj}${course.Catalog}`] = { Credit: course.Unit, Grade: course.Grade };
-        countedCourse.push(course)
+        countedCourse.push(course);
         totalCredit += parseInt(course.Unit);
         totalGpa += getGPA(course.Grade) * course.Unit;
-      }
+      };
 
       for (const index in courseList) {
         const course = courseList[index];
@@ -53,7 +51,7 @@ try {
           }
         } else addCourse(course);
       }
-    }
+    };
 
     const sortCourse = (a, b) => getGPA(b.Grade) - getGPA(a.Grade);
 
@@ -66,8 +64,6 @@ try {
       addCourseToResult(remaining, 20);
     } else {
       courseList.sort(sortCourse);
-      // console.log('countedCourse')
-      // console.log(countedCourse)
       courseList = courseList.reduce((acc, course) => {
         !countedCourse.includes(course) && acc.push(course);
         return acc;
@@ -78,7 +74,7 @@ try {
     console.log(`${higherLevel ? 'Higher Level' : 'Middle and Higher Level'} \nGPA: ${totalGpa / totalCredit}\nTotal credit: ${totalCredit}\n`);
     console.table(includedCourse);
     return totalGpa / totalCredit;
-  }
+  };
 
   const table = [...document.querySelector('frame[name="TargetContent"]').contentDocument.querySelectorAll('table.PSLEVEL2GRID')].find((element) => {
     const text = element.innerText;
@@ -93,12 +89,12 @@ try {
     return course;
   });
 
-  const S2XX = results.filter(course => course.Subj === 'COMP' && course.Catalog.match(/S2\d\dF/) && getGPA(course.Grade));
-  const S3XX = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S3\d\dF/) && getGPA(course.Grade));
-  const S4XX = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S4\d\dF/) && getGPA(course.Grade));
+  const countedCourse = [];
+  const middleLevelCourses = results.filter(course => course.Subj === 'COMP' && course.Catalog.match(/S2\d\dF/) && getGPA(course.Grade));
+  const higherLevelCourses = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S3\d\dF|S4\d\dF/) && getGPA(course.Grade));
 
   console.clear();
-  console.log(`WGPA: ${(getWGPA(S3XX.concat(S4XX), true) * 2 + getWGPA(S2XX.concat(S3XX).concat(S4XX), false)) / 3}`);
+  console.log(`WGPA: ${(getWGPA(higherLevelCourses, true) * 2 + getWGPA(middleLevelCourses.concat(higherLevelCourses), false)) / 3}`);
 
   console.log('OUHK CGPA Calculator by Loh Ka Hong');
 } catch (e) {
