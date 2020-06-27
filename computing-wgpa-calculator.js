@@ -64,10 +64,7 @@ try {
       addCourseToResult(remaining, 20);
     } else {
       courseList.sort(sortCourse);
-      courseList = courseList.reduce((acc, course) => {
-        !countedCourses.includes(course) && acc.push(course);
-        return acc;
-      }, []);
+      courseList = courseList.filter(course => !countedCourses.includes(course));
       addCourseToResult(courseList, 40);
     }
 
