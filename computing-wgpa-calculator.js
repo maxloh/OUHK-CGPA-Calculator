@@ -14,13 +14,13 @@ try {
   const getWGPA = (courseList, higherLevel) => {
     let totalCredit = 0;
     let totalGpa = 0;
-    let includedCourse = [];
+    let includedCourses = {};
 
     const addCourseToResult = (courseList, noCredit) => {
       const creditMax = totalCredit + noCredit;
       const addCourse = (course) => {
-        includedCourse[`${course.Subj}${course.Catalog}`] = { Credit: course.Unit, Grade: course.Grade };
-        countedCourse.push(course);
+        includedCourses[`${course.Subj}${course.Catalog}`] = { Credit: course.Unit, Grade: course.Grade };
+        countedCourses.push(course);
         totalCredit += parseInt(course.Unit);
         totalGpa += getGPA(course.Grade) * course.Unit;
       };
@@ -65,14 +65,14 @@ try {
     } else {
       courseList.sort(sortCourse);
       courseList = courseList.reduce((acc, course) => {
-        !countedCourse.includes(course) && acc.push(course);
+        !countedCourses.includes(course) && acc.push(course);
         return acc;
       }, []);
       addCourseToResult(courseList, 40);
     }
 
     console.log(`${higherLevel ? 'Higher Level' : 'Middle and Higher Level'} \nGPA: ${totalGpa / totalCredit}\nTotal credit: ${totalCredit}\n`);
-    console.table(includedCourse);
+    console.table(includedCourses);
     return totalGpa / totalCredit;
   };
 
@@ -89,7 +89,7 @@ try {
     return course;
   });
 
-  const countedCourse = [];
+  const countedCourses = [];
   const middleLevelCourses = results.filter(course => course.Subj === 'COMP' && course.Catalog.match(/S2\d\dF/) && getGPA(course.Grade));
   const higherLevelCourses = results.filter(course => (course.Subj === 'COMP' || course.Subj === 'ELEC') && course.Catalog.match(/S3\d\dF|S4\d\dF/) && getGPA(course.Grade));
 
